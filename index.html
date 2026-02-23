@@ -1,0 +1,2178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CyberSisco | Protect • Detect • Secure</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter', Arial, sans-serif}
+html{scroll-behavior:smooth}
+body{background:#fff;color:#0f172a;overflow-x:hidden;line-height:1.6}
+
+/* ===== HERO WRAPPER ===== */
+.hero{
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== ANIMATION ===== */
+.reveal{opacity:0;transform:translateY(40px);transition:1s ease}
+.reveal.active{opacity:1;transform:translateY(0)}
+
+/* ===== BACKGROUND ANIMATIONS ===== */
+.animated-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.floating-shapes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.floating-shapes div {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb22, #3b82f622);
+  opacity: 0.3;
+}
+
+.shape1 { width: 300px; height: 300px; top: 10%; left: 5%; animation: float 20s infinite linear; }
+.shape2 { width: 200px; height: 200px; top: 60%; right: 10%; animation: float 25s infinite linear reverse; }
+.shape3 { width: 150px; height: 150px; bottom: 20%; left: 15%; animation: float 30s infinite linear; }
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(30px, 50px) rotate(90deg); }
+  50% { transform: translate(0, 100px) rotate(180deg); }
+  75% { transform: translate(-30px, 50px) rotate(270deg); }
+}
+
+.grid-pattern {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.5;
+}
+
+/* ===== NAVBAR ===== */
+nav{
+  position:sticky;top:0;z-index:1000;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 5%;
+  background:rgba(255,255,255,0.98);
+  backdrop-filter: blur(10px);
+  box-shadow:0 8px 30px rgba(0,0,0,.04);
+  transition: all 0.3s ease;
+}
+
+nav.scrolled {
+  padding: 15px 5%;
+  box-shadow: 0 10px 40px rgba(0,0,0,.08);
+}
+
+.logo-container {
+  display:flex; align-items:center; gap:10px;
+}
+
+.logo-img {
+  width:28px; height:28px; object-fit:contain;
+}
+
+.logo-text {
+  font-size:24px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight:700;
+}
+
+.nav-links {
+  display:flex;gap:32px;list-style:none;
+}
+
+nav a{
+  text-decoration:none;color:#64748b;font-weight:500;
+  position:relative;
+  padding:8px 0;
+  transition: color 0.3s ease;
+  font-size: 16px;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #2563eb;
+  transition: width 0.3s ease;
+}
+
+nav a:hover {
+  color: #2563eb;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+.cta{
+  background:#2563eb;color:#fff;
+  padding:12px 26px;border-radius:30px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.cta:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #2563eb;
+  cursor: pointer;
+}
+
+/* ===== HERO ===== */
+.hero-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 100px 5%;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .hero-container {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(135deg, #eef4ff22, #2563eb11);
+  border-radius: 0 0 0 200px;
+  z-index: -1;
+}
+
+.badge{
+  background:#eef4ff;color:#2563eb;
+  padding:8px 16px;border-radius:20px;
+  font-size:13px;font-weight:600;display:inline-block;
+  animation: pulse 2s infinite;
+  transform-origin: center;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.hero h1{
+  font-size:clamp(36px, 8vw, 64px);line-height:1.1;margin:24px 0;
+  animation: slideIn 1s ease-out 0.3s both;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.hero h1 span{
+  color:#2563eb;
+  position: relative;
+  display: inline-block;
+}
+
+.hero h1 span::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: #2563eb33;
+  z-index: -1;
+  border-radius: 4px;
+}
+
+.hero p{
+  max-width:520px;color:#64748b;line-height:1.6;
+  animation: slideIn 1s ease-out 0.5s both;
+  font-size: clamp(16px, 2vw, 18px);
+  margin-bottom: 20px;
+}
+
+.hero-btns{
+  margin-top:40px;display:flex;gap:16px;
+  flex-wrap: wrap;
+}
+
+/* ===== HERO IMAGE SECTION ===== */
+.hero-image-container {
+  position: relative;
+  z-index: 2;
+  animation: floatUp 1s ease-out 0.7s both;
+}
+
+@keyframes floatUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-image-box {
+  background: white;
+  border-radius: 24px;
+  padding: 40px 30px;
+  box-shadow: 0 40px 80px rgba(37, 99, 235, 0.15);
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s ease;
+}
+
+.hero-image-box:hover {
+  transform: translateY(-10px);
+}
+
+.hero-image-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #eef4ff;
+}
+
+.hero-stats-item h3 {
+  font-size: 32px;
+  color: #2563eb;
+  margin-bottom: 5px;
+}
+
+.hero-stats-item span {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.hero-image-box h4 {
+  font-size: 20px;
+  color: #0f172a;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.hero-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.stars {
+  color: #fbbf24;
+  font-size: 18px;
+}
+
+.rating-text {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.hero-image-box p {
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  font-size: 15px;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 250px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #eef4ff, #dbeafe);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.image-placeholder i {
+  font-size: 60px;
+  color: #2563eb;
+  opacity: 0.3;
+}
+
+/* ===== BUTTON ANIMATIONS ===== */
+.btn-primary, .btn-outline, .reg, .send, .faq-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-primary::before, .btn-outline::before, .reg::before, .send::before, .faq-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-primary:hover::before, .btn-outline:hover::before, .reg:hover::before, .send:hover::before, .faq-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-primary{
+  background:#2563eb;color:#fff;
+  padding:16px 34px;border-radius:14px;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+  font-size: 16px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+}
+
+.btn-outline{
+  background:#fff;border:2px solid #2563eb;
+  padding:16px 34px;border-radius:14px;
+  color:#2563eb;
+  font-size: 16px;
+}
+
+.btn-outline:hover {
+  transform: translateY(-3px);
+  background: #2563eb;
+  color: white;
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+}
+
+/* ===== WHO WE ARE ===== */
+.who{
+  padding:80px 5%;
+  background: linear-gradient(135deg, #f9fbff 0%, #ffffff 100%);
+  position: relative;
+  overflow: hidden;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.who::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 70%;
+  height: 200%;
+  background: linear-gradient(135deg, #2563eb05, transparent 70%);
+  transform: rotate(15deg);
+}
+
+.who-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:60px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 992px) {
+  .who-grid {
+    grid-template-columns:1.2fr 1fr;
+    gap:80px;
+  }
+}
+
+.card{
+  background:#fff;border-radius:24px;padding:40px 30px;
+  box-shadow:0 40px 80px rgba(0,0,0,.08);
+  position:relative;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 1px solid rgba(37, 99, 235, 0.1);
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding:48px;
+  }
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 50px 100px rgba(0,0,0,.12);
+}
+
+.cs{
+  position:absolute;top:-18px;left:-18px;
+  width:44px;height:44px;border-radius:12px;
+  background:#2563eb;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.card h2{
+  font-size: clamp(28px, 4vw, 36px);
+  margin-bottom: 20px;
+}
+
+.card p{color:#64748b;line-height:1.7;margin-bottom:16px}
+.stats{display:flex;gap:40px;margin-top:24px; flex-wrap: wrap;}
+.stats h3{color:#2563eb;font-size:28px}
+.stats div span {
+  color: #64748b;
+  font-size: 14px;
+  display: block;
+  margin-top: 5px;
+}
+
+.identity h2{
+  font-size: clamp(28px, 4vw, 36px);
+  margin-bottom:24px
+}
+
+.id{
+  display:flex;gap:20px;margin-bottom:28px;
+  transition: transform 0.3s ease;
+  align-items: flex-start;
+}
+
+.id:hover {
+  transform: translateX(10px);
+}
+
+.num{
+  width:44px;height:44px;border-radius:14px;
+  background:#eef4ff;color:#2563eb;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.id:hover .num {
+  background: #2563eb;
+  color: white;
+  transform: scale(1.1);
+}
+
+.id-content h3 {
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.id-content p {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* ===== VERIFIED (EXTENDED & IMPRESSIVE) ===== */
+.verified-extended{
+  margin:80px 5%;
+  padding:40px 30px;
+  background:linear-gradient(135deg,#f8fbff,#eef4ff);
+  border-radius:30px;
+  box-shadow:0 40px 100px rgba(0,0,0,.08);
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  .verified-extended {
+    padding:60px;
+    margin: 120px auto;
+  }
+}
+
+.verified-content{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:40px;
+  align-items:center;
+}
+
+@media (min-width: 768px) {
+  .verified-content {
+    grid-template-columns:1.2fr 2fr 1.2fr;
+  }
+}
+
+.verified-badge{
+  text-align:center;
+}
+
+.verified-badge .check{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background:#2563eb;
+  color:#fff;
+  font-size:28px;
+  margin-bottom:16px;
+}
+
+.verified-badge h3{
+  font-size:22px;
+  margin-bottom:6px;
+}
+
+.verified-badge .msme{
+  color:#64748b;
+  font-size:14px;
+}
+
+.verified-badge .msme span{
+  font-size:13px;
+}
+
+.verified-text p{
+  color:#334155;
+  line-height:1.7;
+  margin-bottom:16px;
+  font-size:15px;
+}
+
+.verified-points{
+  list-style:none;
+  padding-left:0;
+}
+
+.verified-points li{
+  margin-bottom:10px;
+  color:#0f172a;
+  font-size:14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.verified-points li:before {
+  content: "✓";
+  color: #2563eb;
+  font-weight: bold;
+}
+
+.verified-reg{
+  background:#2563eb;
+  color:#fff;
+  padding:24px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(37,99,235,.4);
+}
+
+.verified-reg span{
+  display:block;
+  font-size:12px;
+  opacity:.9;
+  margin-bottom:6px;
+}
+
+.verified-reg strong{
+  font-size:16px;
+  letter-spacing:1px;
+  word-break: break-all;
+}
+
+/* ===== OBJECTIVES (ENHANCED) ===== */
+.workshops-section {
+  padding: 80px 5%;
+  background: #f8fbff;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+.workshops-section h2 {
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 700;
+  color: #0b1f44;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  margin: 10px 0 50px;
+  color: #6b7280;
+  font-size: clamp(16px, 2vw, 18px);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.workshop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.workshop-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform 0.3s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.workshop-card:hover {
+  transform: translateY(-8px);
+}
+
+.workshop-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.content {
+  padding: 20px;
+  text-align: left;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tag {
+  display: inline-block;
+  padding: 6px 14px;
+  background: #e8f1ff;
+  color: #2563eb;
+  font-size: 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  align-self: flex-start;
+}
+
+.content h3 {
+  margin: 10px 0;
+  color: #0051ff;
+  font-size: 20px;
+}
+
+.content p {
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+
+.content small {
+  display: block;
+  margin: 12px 0;
+  color: #374151;
+}
+
+.closed {
+  display: inline-block;
+  padding: 8px 14px;
+  background: #fee2e2;
+  color: #b91c1c;
+  border-radius: 20px;
+  font-size: 13px;
+  align-self: flex-start;
+}
+
+/* ===== COLLABORATIONS SECTION ===== */
+.collaboration-section{
+  padding:80px 5%;
+  text-align:center;
+  background:#ffffff;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.collaboration-section h2{
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight:700;
+  color:#0f172a;
+  margin-bottom:10px;
+}
+
+.collab-sub{
+  font-size:16px;
+  color:#64748b;
+  margin-bottom:40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.collab-logos{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:40px;
+  flex-wrap:wrap;
+}
+
+.collab-card{
+  width:220px;
+  height:120px;
+  background:#f8fafc;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  transition:all 0.3s ease;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .collab-card {
+    width: 180px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .collab-card {
+    width: 150px;
+    height: 80px;
+  }
+}
+
+.collab-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 40px rgba(37,99,235,0.15);
+}
+
+.collab-card img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+
+/* ===== FAQ SECTION ===== */
+.faq {
+  padding: 80px 5%;
+  background: #ffffff;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.faq-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 60px;
+}
+
+@media (min-width: 992px) {
+  .faq-container {
+    grid-template-columns: 1fr 1.2fr;
+  }
+}
+
+.faq-left h2 {
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.faq-left p {
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+.faq-btn {
+  padding: 14px 28px;
+  border-radius: 30px;
+  background: #2563eb;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.faq-btn:hover {
+  background: #1e40af;
+}
+
+/* Right */
+.faq-item {
+  border: 1px solid #eee;
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 18px;
+  background: #fff;
+}
+
+/* Remove default arrow */
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+}
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Question */
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* Arrow */
+.arrow {
+  font-size: 22px;
+  transition: transform 0.3s ease;
+  color: #2563eb;
+}
+
+/* Rotate arrow on open */
+.faq-item[open] .arrow {
+  transform: rotate(90deg);
+}
+
+/* Answer */
+.faq-answer {
+  margin-top: 16px;
+  color: #555;
+  line-height: 1.6;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+}
+
+/* ===== FOUNDERS ===== */
+.founders{
+  padding:80px 5%;
+  text-align:center;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.founders h2 {
+  font-size: clamp(28px, 4vw, 36px);
+  margin-bottom: 20px;
+}
+
+.f-grid{
+  display:flex;
+  flex-direction: column;
+  gap: 80px;
+  margin-top:60px;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .f-grid {
+    flex-direction: row;
+    justify-content: center;
+    gap: 120px;
+  }
+}
+
+.f-card{
+  transition: transform 0.4s ease;
+}
+
+.f-card:hover {
+  transform: translateY(-15px);
+}
+
+.f-card img{
+  width:180px;height:180px;border-radius:50%;
+  border:6px solid #eef4ff;
+  transition: all 0.4s ease;
+  box-shadow: 0 20px 40px rgba(0,0,0,.1);
+  object-fit: cover;
+}
+
+.f-card:hover img {
+  border-color: #2563eb;
+  transform: scale(1.05);
+  box-shadow: 0 30px 60px rgba(37, 99, 235, 0.2);
+}
+
+.f-tag{
+  background:#2563eb;color:#fff;
+  padding:8px 20px;border-radius:20px;
+  display:inline-block;margin-top:-16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.f-card:hover .f-tag {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
+}
+
+.f-card h3 {
+  margin-top: 15px;
+  font-size: 22px;
+}
+
+/* ===== TESTIMONIALS ===== */
+.testimonials {
+  padding: 80px 5%;
+  background: #f8fafc;
+  text-align: center;
+  overflow: hidden;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.testimonials h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.testimonial-subtitle {
+  color: #64748b;
+  margin-bottom: 50px;
+  font-size: 16px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Slider */
+.slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.slider-track {
+  display: flex;
+  gap: 30px;
+  width: max-content;
+  animation: scroll 40s linear infinite;
+}
+
+/* Card */
+.testimonial-card {
+  min-width: 350px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px;
+  text-align: left;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 768px) {
+  .testimonial-card {
+    min-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonial-card {
+    min-width: 280px;
+  }
+}
+
+.testimonial-stars {
+  color: #fbbf24;
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.testimonial-card p {
+  color: #334155;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Student */
+.student {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.student small {
+  display: block;
+  color: #64748b;
+  font-size: 13px;
+}
+
+/* Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause on hover */
+.slider:hover .slider-track {
+  animation-play-state: paused;
+}
+
+/* ===== CONTACT ===== */
+.contact{
+  padding:80px 5%;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.contact-box{
+  display:grid;
+  grid-template-columns:1fr;
+  border-radius:30px;
+  overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.08);
+  transition: transform 0.4s ease;
+}
+
+@media (min-width: 992px) {
+  .contact-box {
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+.contact-box:hover{
+  transform: translateY(-10px);
+}
+
+.left{
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color:#fff;
+  padding:40px 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .left {
+    padding:60px;
+  }
+}
+
+.left::before{
+  content:'';
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255,255,255,0.1) 50%,
+    transparent 70%
+  );
+  animation: shimmer 4s infinite linear;
+  opacity:0.3;
+}
+
+@keyframes shimmer {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.right{
+  padding:40px 30px;
+  background:#fff;
+  position:relative;
+}
+
+@media (min-width: 768px) {
+  .right {
+    padding:60px;
+  }
+}
+
+.contact-left h2 {
+  font-size: clamp(28px, 4vw, 36px);
+  margin-bottom: 20px;
+  color: white;
+}
+
+.contact-left p {
+  margin-bottom: 15px;
+  opacity: 0.9;
+  font-size: 16px;
+}
+
+.contact-info {
+  margin-top: 30px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.contact-info p {
+  margin-bottom: 8px;
+}
+
+/* Community Join */
+.community-box {
+  margin-top: 40px;
+}
+
+.community-title {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.community-icons {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.community-icons a {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.community-icons svg {
+  width: 22px;
+  height: 22px;
+}
+
+.community-icons a:hover {
+  background: #fff;
+  color: #2563eb;
+  transform: translateY(-4px);
+}
+
+/* Form */
+input, textarea{
+  width:100%;
+  padding:16px;
+  margin-bottom:16px;
+  border-radius:12px;
+  border:2px solid #e2e8f0;
+  transition: all 0.3s ease;
+  font-size:16px;
+  font-family: inherit;
+}
+
+input:focus, textarea:focus{
+  outline:none;
+  border-color:#2563eb;
+  box-shadow:0 0 0 4px rgba(37,99,235,0.1);
+}
+
+.send{
+  width:100%;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color:#fff;
+  padding:16px;
+  border:none;
+  border-radius:14px;
+  font-weight:600;
+  box-shadow:0 8px 20px rgba(37,99,235,0.3);
+  transition: all 0.3s ease;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.send:hover{
+  transform: translateY(-3px);
+  box-shadow:0 12px 30px rgba(37,99,235,0.4);
+}
+
+.popup {
+  position: fixed;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2563eb;
+  color: #fff;
+  padding: 14px 30px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  transition: top 0.5s ease;
+  z-index: 9999;
+}
+
+.popup.show {
+  top: 20px;
+}
+
+/* Disable clicks on all animated overlays */
+.animated-bg,
+.animated-bg *,
+.left::before,
+.hero::before,
+.who::before {
+  pointer-events: none;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color:#cbd5f5;
+  padding:50px 5%;
+  text-align:center;
+  position: relative;
+  overflow: hidden;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+}
+
+footer strong{color:#fff; font-weight: 700;}
+
+footer p {
+  margin-bottom: 15px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+  .hero-btns {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .btn-primary, .btn-outline {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .stats {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    padding: 15px 5%;
+  }
+  
+  .nav-links {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,.1);
+    z-index: 999;
+  }
+  
+  .nav-links.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
+  
+  .hero-container {
+    padding: 80px 5%;
+  }
+  
+  .hero h1 {
+    font-size: 36px;
+  }
+  
+  .who, .verified-extended, .collaboration-section, .founders, .testimonials, .contact {
+    padding: 60px 5%;
+  }
+  
+  .f-grid {
+    gap: 60px;
+  }
+  
+  .collab-logos {
+    gap: 20px;
+  }
+  
+  .hero-image-box {
+    padding: 30px 20px;
+  }
+  
+  .hero-stats-item h3 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 32px;
+  }
+  
+  .card {
+    padding: 30px 20px;
+  }
+  
+  .verified-extended {
+    padding: 30px 20px;
+  }
+  
+  .workshop-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .f-card img {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .slider-track {
+    gap: 20px;
+  }
+  
+  .hero-stats {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Animation -->
+<div class="animated-bg">
+  <div class="floating-shapes">
+    <div class="shape1"></div>
+    <div class="shape2"></div>
+    <div class="shape3"></div>
+  </div>
+  <div class="grid-pattern"></div>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <!-- Logo + Brand -->
+  <div class="logo-container">
+    <!-- Small Logo -->
+    <img src="cybersisco-logo.jpg" alt="CyberSisco Logo" class="logo-img">
+    <!-- Brand Text -->
+    <strong class="logo-text">CyberSisco</strong>
+  </div>
+
+  <!-- Mobile Menu Toggle -->
+  <button class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Navigation Links -->
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#who">Who We Are</a></li>
+    <li><a href="#workshops">Webinar</a></li>
+    <li><a href="#founders">Founders</a></li>
+    <li><a href="#contact" class="cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero reveal">
+  <div class="hero-container">
+    <div class="hero-content">
+      <span class="badge">VERIFIED EDUCATION STARTUP</span>
+
+      <h1>Solve <span>Cybercrime</span><br>in the Digital Era</h1>
+
+      <p>
+        Premium cybersecurity & digital forensics community dedicated to education,
+        research, and practice.
+      </p>
+
+      <div class="hero-btns">
+        <!-- Join Community (LinkedIn) -->
+        <a href="https://www.linkedin.com/company/cybersisco"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn-primary">
+          Join the Community
+        </a>
+
+        <!-- Explore Research -->
+        <a href="linkedin.html" class="btn-outline">
+          Explore Research
+        </a>
+      </div>
+    </div>
+    
+    <!-- RIGHT SIDE IMAGE/CONTENT BOX -->
+    <div class="hero-image-container">
+      <div class="hero-image-box">
+        <div class="hero-stats">
+          <div class="hero-stats-item">
+            <h3>2+</h3>
+            <span>Years Experience</span>
+          </div>
+          <div class="hero-stats-item">
+            <h3>1600+</h3>
+            <span>Ratings</span>
+          </div>
+        </div>
+        
+        <h4>Trusted by learners, built for cyber success</h4>
+        
+        <div class="hero-rating">
+          <div class="stars">★★★★★</div>
+          <div class="rating-text">From 1600+ ratings</div>
+        </div>
+        
+        <p>With years of experience, we have built a reputation for delivering top-notch cybersecurity solutions tailored to meet your needs.</p>
+        
+        <a href="#workshops" class="btn-primary" style="width: 100%; text-align: center; margin-top: 10px;">
+          Explore our courses
+        </a>
+        
+        <!-- Image Placeholder - Replace with your actual image -->
+        <div class="image-placeholder">
+          <!-- Replace this with your actual image -->
+          <img src="ChatGPT Image Jan 18, 2026, 05_23_13 PM.png" alt="CyberSisco Success" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- WHO WE ARE -->
+<section id="who" class="who reveal">
+  <div class="who-grid">
+    <div class="card">
+      <div class="cs">CS</div>
+      <h2>Who We Are</h2>
+      <p>CyberSisco is an MSME-verified education startup (Government of India) dedicated to strengthening the digital world through cybersecurity and digital forensics education, research, and practice. Guided by the principle "Protect | Detect | Secure", we aim to empower students, professionals, and cyber enthusiasts with practical knowledge and real-world skills to combat cybercrime in the digital era.</p>
+      <p>With a passionate team of cybersecurity learners, researchers, and practitioners—supported by experienced mentors and advisors—CyberSisco is committed to nurturing the next generation of cyber professionals and promoting excellence in cybersecurity and digital forensics across India and beyond.</p>
+      <p>We focus on building a strong and collaborative cyber community by promoting hands-on training, research innovation, and professional development. Through workshops, conferences, webinars, research projects, and student engagement programs, CyberSisco acts as a bridge between academia, industry, and law-enforcement practices.</p>
+      <div class="stats">
+        <div><h3>Global</h3><span>AUDIENCE</span></div>
+        <div><h3>Elite</h3><span>EXPERTISE</span></div>
+      </div>
+    </div>
+
+    <div class="identity">
+      <h2>Our Identity</h2>
+      <div class="id">
+        <div class="num">1</div>
+        <div class="id-content">
+          <h3>Education Startup</h3>
+          <p>An Education Startup is an organization that focuses on innovative learning, skill development, training, and research using modern methods, technology, and practical approaches. Unlike traditional institutes, education startups aim to bridge the gap between academic knowledge and real-world industry requirements.</p>
+        </div>
+      </div>
+      <div class="id">
+        <div class="num">2</div>
+        <div class="id-content">
+          <h3>Community Focused</h3>
+          <p>A community-focused organization is one that places people, collaboration, and shared growth at the center of its mission. Instead of working in isolation, it builds a strong, inclusive ecosystem where learners, professionals, researchers, and enthusiasts come together to learn, share, and grow collectively.</p>
+        </div>
+      </div>
+      <div class="id">
+        <div class="num">3</div>
+        <div class="id-content">
+          <h3>Research Driven</h3>
+          <p>A research-driven organization is one that builds its work on systematic study, evidence-based practices, and continuous innovation. Instead of relying only on existing knowledge, it actively explores new ideas, analyzes real-world problems, and develops practical solutions. At CyberSisco, being research-driven means learning through investigation, experimentation, and real-world analysis to strengthen cybersecurity and digital forensics practices.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERIFIED -->
+<section class="verified reveal verified-extended">
+  <div class="verified-content">
+    <div class="verified-badge">
+      <span class="check">✔</span>
+      <h3>Government registered</h3>
+      <p class="msme">
+        Recognized by MSME<br>
+        <span>(Government of India)</span>
+      </p>
+    </div>
+
+    <div class="verified-text">
+      <p>
+        CyberSisco is a <strong>legally registered and MSME-recognized education startup</strong>
+        under the Ministry of Micro, Small and Medium Enterprises, Government of India.
+      </p>
+
+      <p>
+        This recognition validates CyberSisco as an authentic and compliant organization,
+        actively working in the domains of <strong>cybersecurity education, research,
+        digital forensics, and skill development</strong>.
+      </p>
+
+      <ul class="verified-points">
+        <li>Registered & compliant under Govt. of India norms</li>
+        <li>Trusted education & research-driven initiative</li>
+        <li>Focused on national & global cyber capacity building</li>
+      </ul>
+    </div>
+
+    <div class="verified-reg">
+      <span>UDYAM REGISTRATION</span>
+      <strong>UDYAM-UP-50-0224798</strong>
+    </div>
+  </div>
+</section>
+
+
+<!-- OBJECTIVES -->
+<section class="workshops-section" id="workshops">
+  <div class="container">
+    <h2>Our Workshops & Certifications</h2>
+    <p class="subtitle">
+      Skill-based cybersecurity workshops and industry-oriented certifications
+    </p>
+
+    <div class="workshop-grid">
+      <!-- Card 1 -->
+      <div class="workshop-card">
+        <img src="dark-webs-and-malware.jpeg" alt="Dark Web & Malware">
+        <div class="content">
+          <span class="tag">Webinar</span>
+          <h3>Dark Web and Malware</h3>
+          <p>
+            Exposure to malware types, infection vectors, analysis basics,
+            and defensive techniques.
+          </p>
+          <small>Last Date: 13th January 2026</small>
+          <span class="closed">Enrollment Closed</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="workshop-card">
+        <img src="online-protection.jpeg" alt="Cyber Laws">
+        <div class="content">
+          <span class="tag">Webinar</span>
+          <h3>Cyber Laws and Online Protection</h3>
+          <p>
+            Introduction to cyber laws, legal frameworks, and online
+            protection mechanisms.
+          </p>
+          <small>Last Date: 13th Dec 2025</small>
+          <span class="closed">Enrollment Closed</span>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="workshop-card">
+        <img src="road-map-of-cybersecuurity.jpeg" alt="Roadmap of Cybersecurity">
+        <div class="content">
+          <span class="tag">Webinar</span>
+          <h3>Roadmap of Cybersecurity</h3>
+          <p>
+            Penetration testing, vulnerability assessment, and career roadmap.
+          </p>
+          <small>Last Date: 09 Nov 2025</small>
+          <span class="closed">Enrollment Closed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== COLLABORATIONS SECTION ===== -->
+<section id="collaborations" class="collaboration-section">
+  <h2>Our Collaborations</h2>
+  <p class="collab-sub">Trusted partnerships that strengthen our cybersecurity mission</p>
+
+  <div class="collab-logos">
+    <div class="collab-card">
+      <img src="forensico.jpeg" alt="Forensico Collaboration">
+    </div>
+    <div class="collab-card">
+      <img src="cybercia.jpeg" alt="Cybercia Collaboration">
+    </div>
+  </div>
+</section>
+
+
+<!-- QUESTIONS / FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-container">
+    <div class="faq-left">
+      <h2>Your questions,<br>answered</h2>
+      <p>
+        Answers to the most common questions our students have.
+        If you don't find the information you're looking for, feel free to contact us.
+      </p>
+      <a href="#contact" class="faq-btn">Contact Us</a>
+    </div>
+
+    <div class="faq-right">
+      <details class="faq-item">
+        <summary class="faq-question">
+          Is CyberSisco a government organization?
+          <span class="arrow">→</span>
+        </summary>
+        <div class="faq-answer">
+          CyberSisco is an MSME-registered education startup recognized under the
+          Government of India, but it operates independently.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          What is the main goal of CyberSisco?
+          <span class="arrow">→</span>
+        </summary>
+        <div class="faq-answer">
+          Our goal is to strengthen cybersecurity education through hands-on
+          training, research, and digital awareness.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          Who can join CyberSisco programs?
+          <span class="arrow">→</span>
+        </summary>
+        <div class="faq-answer">
+          Students, professionals, researchers, and cybersecurity enthusiasts
+          from any background can join.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          Do you collaborate with colleges or organizations?
+          <span class="arrow">→</span>
+        </summary>
+        <div class="faq-answer">
+          Yes, we collaborate with colleges, NGOs, and institutions for workshops,
+          webinars, and research initiatives.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDERS -->
+<section id="founders" class="founders reveal">
+  <h2>Visionary Founders</h2>
+  <div class="f-grid">
+    <div class="f-card">
+      <img src="pushkar .jpg" alt="Pushkar Singh">
+      <div class="f-tag">FOUNDER</div>
+      <h3>Pushkar Singh</h3>
+    </div>
+    <div class="f-card">
+      <img src="divyanshu .jpg" alt="Divyanshu Rai">
+      <div class="f-tag">CO-FOUNDER</div>
+      <h3>Divyanshu Rai</h3>
+    </div>
+  </div>
+</section>
+
+
+<!-- STUDENT REVIEWS -->
+<section class="testimonials">
+  <h2>What Our Students Say</h2>
+  <p class="testimonial-subtitle">
+    Real experiences from learners who have grown with CyberSisco.
+  </p>
+
+  <div class="slider">
+    <div class="slider-track">
+      <!-- Sequence A -->
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>
+          The workshops were extremely practical and well-structured.
+          CyberSisco helped me understand cybersecurity with real-world examples.
+        </p>
+        <div class="student">
+          <span class="avatar">Y</span>
+          <div>
+            <strong>Yash Sharma</strong>
+            <small>BTech-MTech CSE (Cybersecurity)</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>
+          I have attended many webinars, but CyberSisco stands out due to
+          its research-driven approach and clarity in teaching.
+        </p>
+        <div class="student">
+          <span class="avatar">D</span>
+          <div>
+            <strong>Dev Singh Rathore</strong>
+            <small>BTech-MTech CSE (Cybersecurity)</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>
+          The sessions were engaging, informative, and career-focused.
+          I gained confidence and practical skills in digital forensics.
+        </p>
+        <div class="student">
+          <span class="avatar">P</span>
+          <div>
+            <strong>Piyush Yadav</strong>
+            <small>BTech-MTech CSE (Cybersecurity)</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>
+          The workshops were extremely practical and well-structured.
+          CyberSisco helped me understand cybersecurity with real-world examples.
+        </p>
+        <div class="student">
+          <span class="avatar">Y</span>
+          <div>
+            <strong>Yash Sharma</strong>
+            <small>BTech-MTech CSE (Cybersecurity)</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sequence B (duplicate of Sequence A for seamless loop) -->
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>
+          The workshops were extremely practical and well-structured.
+          CyberSisco helped me understand cybersecurity with real-world examples.
+        </p>
+        <div class="student">
+          <span class="avatar">Y</span>
+          <div>
+            <strong>Yash Sharma</strong>
+            <small>BTech-MTech CSE (Cybersecurity)</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>
+          I have attended many webinars, but CyberSisco stands out due to
+          its research-driven approach and clarity in teaching.
+        </p>
+        <div class="student">
+          <span class="avatar">D</span>
+          <div>
+            <strong>Dev Singh Rathore</strong>
+            <small>BTech-MTech CSE (Cybersecurity)</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>
+          The sessions were engaging, informative, and career-focused.
+          I gained confidence and practical skills in digital forensics.
+        </p>
+        <div class="student">
+          <span class="avatar">P</span>
+          <div>
+            <strong>Piyush Yadav</strong>
+            <small>BTech-MTech CSE (Cybersecurity)</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>
+          The workshops were extremely practical and well-structured.
+          CyberSisco helped me understand cybersecurity with real-world examples.
+        </p>
+        <div class="student">
+          <span class="avatar">Y</span>
+          <div>
+            <strong>Yash Sharma</strong>
+            <small>BTech-MTech CSE (Cybersecurity)</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact reveal">
+  <div class="contact-box">
+    <!-- LEFT BLUE BOX -->
+    <div class="left">
+      <div class="contact-left">
+        <h2>Get in Touch</h2>
+        <p>Email: cybersisco.edu@gmail.com</p>
+        <p>Call: +91 8173919410</p>
+
+        <div class="contact-info">
+          <p>📍 Based in India</p>
+          <p>🌐 Serving Globally</p>
+        </div>
+
+        <!-- COMMUNITY JOIN SECTION -->
+        <div class="community-box">
+          <p class="community-title">Join Our Communities</p>
+          <div class="community-icons">
+            <!-- WhatsApp -->
+            <a href="https://chat.whatsapp.com/Fy0m5JqOX6K9Uqsx4Z4LGG" target="_blank" title="Join WhatsApp Community">
+              <svg viewBox="0 0 32 32">
+                <path fill="currentColor" d="M16 2.9C8.8 2.9 3 8.6 3 15.8c0 2.8.8 5.4 2.3 7.6L3 29l5.8-2.2c2.1 1.2 4.6 1.9 7.2 1.9 7.2 0 13-5.8 13-13S23.2 2.9 16 2.9z"/>
+              </svg>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/cybersisco?igsh=eXpqZHV4NWs2cXY2" target="_blank" title="Follow on Instagram">
+              <svg viewBox="0 0 24 24">
+                <path fill="currentColor" d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+              </svg>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/company/cybersisco" target="_blank" title="Follow on LinkedIn">
+              <svg viewBox="0 0 24 24">
+                <path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 24h5V7H0v17zm7.5-17H12v2.5h.1c.6-1.1 2.1-2.5 4.4-2.5 4.7 0 5.5 3.1 5.5 7.1V24h-5v-7.7c0-1.8 0-4.1-2.5-4.1s-2.9 2-2.9 4v7.8h-5V7z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT FORM -->
+    <div class="right">
+      <form id="contactForm">
+        <input type="text" name="full_name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="text" name="subject" placeholder="Subject" required>
+        <textarea name="message" placeholder="Your detailed message" rows="4" required></textarea>
+        <button type="submit" class="send">Send Inquiry</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Designed by Ashish Kumar (+91 8130737058)</strong></p>
+  <p>© 2026 CyberSisco. All Rights Reserved.</p>
+  <p>CyberSisco is a verified education startup focused on cybersecurity, digital forensics, research, and innovation.</p>
+</footer>
+
+<!-- Popup Notification -->
+<div class="popup" id="popup"></div>
+
+<script>
+// Scroll reveal animation
+const items = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) e.target.classList.add('active');
+  });
+}, {threshold: 0.15});
+items.forEach(i => obs.observe(i));
+
+// Navbar scroll effect
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 100) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+// Mobile menu toggle
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+const menuIcon = menuToggle.querySelector('i');
+
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+  menuIcon.classList.toggle('fa-bars');
+  menuIcon.classList.toggle('fa-times');
+});
+
+// Close mobile menu when clicking a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+    menuIcon.classList.remove('fa-times');
+    menuIcon.classList.add('fa-bars');
+  });
+});
+
+// Form submission
+const contactForm = document.getElementById('contactForm');
+const popup = document.getElementById('popup');
+
+contactForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // Get form data
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData);
+  
+  // Validate form
+  let allFilled = true;
+  this.querySelectorAll('input[required], textarea[required]').forEach(input => {
+    if(!input.value.trim()) {
+      allFilled = false;
+      input.style.borderColor = '#ef4444';
+      setTimeout(() => input.style.borderColor = '', 500);
+    }
+  });
+  
+  if(allFilled) {
+    // In a real application, you would send this data to a server
+    // For now, we'll just show a success message
+    showPopup('Message sent successfully! We will get back to you soon.', 'success');
+    
+    // Reset form
+    this.reset();
+    this.querySelectorAll('input, textarea').forEach(input => {
+      input.style.borderColor = '';
+    });
+  } else {
+    showPopup('Please fill in all required fields.', 'error');
+  }
+});
+
+// Show popup notification
+function showPopup(message, type = 'success') {
+  popup.textContent = message;
+  popup.style.background = type === 'success' ? '#2563eb' : '#ef4444';
+  popup.classList.add('show');
+  
+  setTimeout(() => {
+    popup.classList.remove('show');
+  }, 3000);
+}
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    if(this.getAttribute('href') === '#') return;
+    
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    if(targetId === '#') return;
+    
+    const targetElement = document.querySelector(targetId);
+    if(targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop - 80,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// Testimonial slider pause on hover
+const slider = document.querySelector('.slider-track');
+if(slider) {
+  slider.parentElement.addEventListener('mouseenter', () => {
+    slider.style.animationPlayState = 'paused';
+  });
+  
+  slider.parentElement.addEventListener('mouseleave', () => {
+    slider.style.animationPlayState = 'running';
+  });
+}
+
+// Form input validation styling
+contactForm.querySelectorAll('input, textarea').forEach(input => {
+  input.addEventListener('input', function() {
+    if(this.value.trim()) {
+      this.style.borderColor = '#10b981';
+    }
+  });
+  
+  input.addEventListener('blur', function() {
+    if(!this.value.trim() && this.hasAttribute('required')) {
+      this.style.borderColor = '#ef4444';
+    }
+  });
+});
+
+// Fix for images that might not load
+document.querySelectorAll('img').forEach(img => {
+  img.addEventListener('error', function() {
+    this.src = 'https://via.placeholder.com/400x300/2563eb/ffffff?text=CyberSisco';
+    this.alt = 'CyberSisco Image';
+  });
+});
+
+// Prevent form resubmission on page refresh
+if (window.history.replaceState) {
+  window.history.replaceState(null, null, window.location.href);
+}
+</script>
+</body>
+</html>
