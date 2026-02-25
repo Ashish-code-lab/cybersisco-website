@@ -32,68 +32,51 @@ The platform focuses on practical learning, real-world skills, and career develo
 ✨ Features
 🏠 Landing Page
 
-Modern Hero Section
-
-Clean UI / UX
-
-Professional Design
-
-Responsive Layout
+* Modern Hero Section
+* Clean UI / UX
+* Professional Design
+*Responsive Layout
 
 🎓 Workshops Section
 
-Dark Web & Malware
-
-Cyber Laws & Online Protection
-
-Roadmap of Cybersecurity
+* Dark Web & Malware
+* Cyber Laws & Online Protection
+* Roadmap of Cybersecurity
 
 🤝 Collaborations
 
-Industry partner showcase
-
-Trusted organizations
+* Industry partner showcase
+* Trusted organizations
 
 💬 Testimonials
 
-Real student feedback
-
-Professional review cards
+* Real student feedback
+* Professional review cards
 
 ❓ FAQ Section
 
-Interactive Questions
-
-Expand / Collapse
+* Interactive Questions
+* Expand / Collapse
 
 📱 Fully Responsive
 
-Mobile Friendly
-
-Tablet Friendly
-
-Desktop Optimized
+* Mobile Friendly
+* Tablet Friendly
+* Desktop Optimized
 
 🛠️ Tech Stack
 
-Frontend
-
-HTML5
-
-CSS3
-
-JavaScript
+* Frontend
+* HTML5
+* CSS3
 
 Design
 
-Modern UI / UX
-
-Responsive Design
-
-Animations
+* Modern UI / UX
+* Responsive Design
+* Animations
 
 Tools
 
-VS Code
-
-GitHub
+* VS Code
+* GitHub
